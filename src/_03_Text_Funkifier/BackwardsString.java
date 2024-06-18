@@ -6,14 +6,14 @@ public class BackwardsString implements TextFunkifier {
 
     public BackwardsString(String unfunkifiedText) {
 
-        this.unfunkifiedText = unfunkifiedText;
+        this.unfunkifiedText = new StringBuilder(unfunkifiedText).reverse().toString();
 
     }
 
     @Override
     public String funkifyText() {
 
-        return null;
+        return unfunkifiedText;
 
     }
 }
