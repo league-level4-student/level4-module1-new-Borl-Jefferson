@@ -60,7 +60,9 @@ public class PolymorphWindow extends JPanel implements ActionListener {
     private JFrame window;
     private Timer timer;
 
-    Polymorph bluePoly;
+  //  Polymorph bluePoly;
+   // Polymorph redpol;
+    //Polymorph mov;
 
     public static void main(String[] args) {
         new PolymorphWindow().buildWindow();
@@ -69,13 +71,22 @@ public class PolymorphWindow extends JPanel implements ActionListener {
     public void buildWindow() {
         window = new JFrame("IT'S MORPHIN' TIME!");
         window.add(this);
-        window.getContentPane().setPreferredSize(new Dimension(500, 500));
+        window.getContentPane().setPreferredSize(new Dimension(WIDTH, HEIGHT));
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.pack();
         window.setVisible(true);
+    
+/*bluePoly.seth(115);
+bluePoly.setw(75);
+int bph=bluePoly.geth();
+int bpw = bluePoly.getw();*/
 
-        bluePoly = new BluePolymorph(50, 50);
 
+
+     //   bluePoly = new BluePolymorph(50, 50, 75, 115);
+       // redpol = new Redpoly(75, 75, 85, 95);
+       // mov = new Movingmorph(400, 200, 65, 80);
+        
         timer = new Timer(1000 / 30, this);
         timer.start();
     }
@@ -83,16 +94,20 @@ public class PolymorphWindow extends JPanel implements ActionListener {
     public void paintComponent(Graphics g) {
         // draw background
         g.setColor(Color.LIGHT_GRAY);
-        g.fillRect(0, 0, 500, 500);
+        g.fillRect(0, 0, WIDTH, HEIGHT);
 
         // draw polymorph
-        bluePoly.draw(g);
+     //   bluePoly.draw(g);
+     //   redpol.draw(g);
+     //   mov.draw(g);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         repaint();
-        bluePoly.update();
+        //bluePoly.update();
+       // redpol.update();
+      //   mov.update();
 
     }
 }
