@@ -21,6 +21,18 @@ public abstract class Polymorph {
     public void setw(int x) {
     	width = x;
     }
+    public int getx() {
+    	return x;
+    }
+    public void setx(int y) {
+    	x = y;
+    }
+    public int gety() {
+    	return width;
+    }
+    public void sety(int x) {
+    	y = x;
+    }
     
 public int geth() {
     	return height;
@@ -28,7 +40,9 @@ public int geth() {
     public void seth(int x) {
     	height = x;
     }
-    
+    public int getpx() {
+    	return 0;
+    }
     public abstract void update();
     
     public abstract void draw(Graphics g);

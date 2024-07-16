@@ -3,10 +3,18 @@ package _05_Polymorphs;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.MouseInfo;
+import java.awt.Point;
+import java.awt.PointerInfo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -52,29 +60,44 @@ import javax.swing.Timer;
  *  clicked. Hint: MouseListener interface.
  */
 
-public class PolymorphWindow extends JPanel implements ActionListener {
-
+public class PolymorphWindow extends JPanel implements ActionListener, MouseMotionListener, MouseListener {
+	int mx = 0;
+	int my = 0;
     public static final int WIDTH = 900;
     public static final int HEIGHT = 600;
-
+    ArrayList<Polymorph> pol = new ArrayList<Polymorph>();
     private JFrame window;
     private Timer timer;
 
-  //  Polymorph bluePoly;
-   // Polymorph redpol;
-    //Polymorph mov;
+    Polymorph bluePoly;
+    Polymorph redpol;
+    Polymorph mov;
+
+	
 
     public static void main(String[] args) {
+
         new PolymorphWindow().buildWindow();
     }
 
     public void buildWindow() {
         window = new JFrame("IT'S MORPHIN' TIME!");
         window.add(this);
+        window.addMouseMotionListener(this);
+        window.addMouseListener(this);
         window.getContentPane().setPreferredSize(new Dimension(WIDTH, HEIGHT));
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.pack();
         window.setVisible(true);
+        pol.add(new BluePolymorph(50, 50, 75, 115));
+	pol.add(new Redpoly(75, 75, 85, 95));
+	pol.add(new Movingmorph(400, 200, 65, 80));
+	pol.add(new BluePolymorph(125, 423, 83, 46));
+	pol.add(new Redpoly(300, 222, 16, 43));
+	pol.add(new BluePolymorph(423, 143, 84, 56));
+	pol.add(new Redpoly(532, 355, 79, 129));
+	pol.add(new Movingmorph(0, 0, 80, 60));
+	
     
 /*bluePoly.seth(115);
 bluePoly.setw(75);
@@ -87,7 +110,7 @@ int bpw = bluePoly.getw();*/
        // redpol = new Redpoly(75, 75, 85, 95);
        // mov = new Movingmorph(400, 200, 65, 80);
         
-        timer = new Timer(1000 / 30, this);
+        timer = new Timer(1000 / 60, this);
         timer.start();
     }
 
@@ -95,7 +118,15 @@ int bpw = bluePoly.getw();*/
         // draw background
         g.setColor(Color.LIGHT_GRAY);
         g.fillRect(0, 0, WIDTH, HEIGHT);
-
+       pol.get(pol.size()-1).sety(my-60);
+       pol.get(pol.size()-1).setx(mx+pol.get(pol.size()-1).getx()-300);
+       // pol.get(pol.size()-1).setx(mx-30);
+        for(int i=0; i<pol.size(); i++) {
+        
+        	pol.get(i).draw(g);
+        		pol.get(i).update();
+        }
+        
         // draw polymorph
      //   bluePoly.draw(g);
      //   redpol.draw(g);
@@ -105,9 +136,61 @@ int bpw = bluePoly.getw();*/
     @Override
     public void actionPerformed(ActionEvent e) {
         repaint();
+        
         //bluePoly.update();
        // redpol.update();
       //   mov.update();
 
     }
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		// TODO Auto-generated method stub
+		mx = e.getX();
+		my = e.getY();
+		
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		System.out.println(mx);
+			System.out.println("thing x " + (pol.get(pol.size()-1).getpx()));
+			
+			
+		if(pol.get(pol.size()-1).getx()>(245) && pol.get(pol.size()-1).getx()<(305)) {
+		//	if(my<pol.get(pol.size()-1).gety()-30 && my>pol.get(pol.size()-1).gety()+30) {
+			JOptionPane.showMessageDialog(null, (pol.get(pol.size()-1).getpx()-275)/5);
+		//	}
+			
+		}
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 }

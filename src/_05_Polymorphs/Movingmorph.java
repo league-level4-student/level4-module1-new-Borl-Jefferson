@@ -8,7 +8,7 @@ boolean right = true;
 	public Movingmorph(int x, int y, int height, int width) {
 		super(x, y, height, width);
 	}
-	
+	int px = 0;
 	@Override
 	public void draw(Graphics g) {
 		g.setColor(Color.yellow);
@@ -18,18 +18,22 @@ boolean right = true;
     @Override
     public void update() {
         if(right) {
-    	x+=5;
+    	px+=5;
         }
         else {
-        	x-=5;
+        	px-=5;
         }
-        if(x>400) {
+        if(px>400) {
         	right=false;
         }
-        if(x<150) {
+        if(px<150) {
         	right=true;
         }
+        x=px;
     }
+   public int getpx() {
+	   return px;
+   }
 	
 
 }
