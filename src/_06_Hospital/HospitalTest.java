@@ -108,7 +108,31 @@ public class HospitalTest extends TestCase {
 
     // Add 3 Doctors and 8 Patients to the testHospital for this test
     public void test8Patients() throws Exception {
-
+    	Patient a1 = new Patient();
+    	Patient a2 = new Patient();
+    	Patient a3 = new Patient();
+    	Patient a4 = new Patient();
+    	Patient a5 = new Patient();
+    	Patient a6 = new Patient();
+    	Patient a7 = new Patient();
+    	Patient a8 = new Patient();
+    	testHospital.addPatient(a1);
+    	testHospital.addPatient(a2);
+    	testHospital.addPatient(a3);
+    	testHospital.addPatient(a4);
+    	testHospital.addPatient(a5);
+    	testHospital.addPatient(a6);
+    	testHospital.addPatient(a7);
+    	testHospital.addPatient(a8);
+    	
+    	
+    	Doctor b1 = new GeneralPractitioner();
+    	Doctor b2 = new GeneralPractitioner();
+    	Doctor b3 = new GeneralPractitioner();
+    	testHospital.addDoctor(b1);
+    	testHospital.addDoctor(b2);
+    	testHospital.addDoctor(b3);  	
+    	
         testHospital.assignPatientsToDoctors();
 
         List<Doctor> testDoctors = testHospital.getDoctors();
